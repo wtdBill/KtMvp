@@ -24,6 +24,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionCallbacks {
      * 多种状态的 View 的切换
      */
     protected var mLayoutStatusView: MultipleStatusView? = null
+    protected lateinit var mContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,16 +77,16 @@ abstract class BaseActivity : AppCompatActivity(), PermissionCallbacks {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        val  sb = StringBuffer()
-        for (str in perms){
+        val sb = StringBuffer()
+        for (str in perms) {
             sb.append(str)
             sb.append("\n")
         }
-        sb.replace(sb.length-2,sb.length,"")
+        sb.replace(sb.length - 2, sb.length, "")
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             Toast.makeText(this, "已拒绝权限" + sb + "并不再询问", Toast.LENGTH_SHORT).show()
             AppSettingsDialog.Builder(this)

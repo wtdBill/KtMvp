@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Handler().postDelayed({
-            startActivity(Intent(this,JokeActivity::class.java))
-        },1000)
+            startActivity(Intent(this,NewsActivity::class.java))
+        },2000)
     }
 }

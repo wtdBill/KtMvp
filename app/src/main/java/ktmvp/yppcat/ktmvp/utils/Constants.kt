@@ -4,7 +4,6 @@ package ktmvp.yppcat.ktmvp.utils
  * Created by ypp0623 on 19-2-18.
  */
 object Constants {
-    const val BASE_URL = "http://baobab.kaiyanapp.com/api/"
     //internal 限制了跨moudle 的使用
     const val SP_KOTLIN_STUDY: String = "kotlin_study"
     const val USER_ID: String = "user_id"
@@ -25,5 +24,6 @@ object Constants {
 
 
     const val JOKE_TIME = "joke_time"
+    const val DEFAULT_JOKE_TIME = "1418745237"
 
 }

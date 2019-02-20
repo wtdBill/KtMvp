@@ -39,10 +39,12 @@ class Preference<T>(val name:String, private val default:T) {
 
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        Logger.e("getValue")
         return getSharedPreferences(name, default)
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+        Logger.e("setValue")
         putSharedPreferences(name, value)
     }
 
