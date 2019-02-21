@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_news.*
 import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.base.BaseActivity
 import ktmvp.yppcat.ktmvp.ui.fragment.NewsFragment
-import ktmvp.yppcat.ktmvp.utils.Logger
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
@@ -35,7 +34,7 @@ class NewsActivity : BaseActivity() {
         mContext = this
         adapter = MyAdapter(supportFragmentManager)
         mViewPager.adapter = adapter
-        mViewPager.offscreenPageLimit = typeArray.size
+        mViewPager.offscreenPageLimit = 1
         initIndicator()
     }
 
@@ -80,7 +79,6 @@ class NewsActivity : BaseActivity() {
 
     internal inner class MyAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
         override fun getItem(p0: Int): Fragment {
-            Logger.e("jiazai jieshu")
             return NewsFragment.Instance(typeArray[p0])
         }
 

@@ -1,4 +1,4 @@
-package com.hazz.kotlinmvp.utils
+package ktmvp.yppcat.ktmvp.utils
 
 import android.annotation.TargetApi
 import android.app.Activity

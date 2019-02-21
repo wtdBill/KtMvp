@@ -18,8 +18,8 @@ class NewsPresenter : BasePrenster<NewsContract.View>(), NewsContract.Presenter 
     override fun getNewsList(type: String, key: String) {
         val disposable = newsModel.getNews(type, key)
                 .subscribe({ it ->
+                    Logger.e("size:${it.result?.data?.size}")
                     mRootView?.apply {
-                        Logger.e("jiazai jieshu")
                         setNewsList(it.result?.data as ArrayList<NewsData.Result.Data>)
                     }
                 }, { t ->

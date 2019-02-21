@@ -1,6 +1,7 @@
 package ktmvp.yppcat.ktmvp.base
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
@@ -28,6 +29,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionCallbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setOrientation()
         setContentView(layoutId())
         initData()
         initView()
@@ -100,5 +102,9 @@ abstract class BaseActivity : AppCompatActivity(), PermissionCallbacks {
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Log.e("EasyPermissions", "获取成功的权限$perms")
+    }
+
+    protected fun setOrientation() {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 }

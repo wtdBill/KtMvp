@@ -16,6 +16,9 @@ object Constants {
     const val JUHE_JOKE_KEY = "22b7e25007155c25551c4cd512828cb9"
     const val JUHE_JOKE = "joke/content/list.php"
 
+    const val JUHE_DIMEN = "http://apis.juhe.cn/qrcode/api"
+    const val JUHE_DIMEN_KEY = "c77619738cb001f9becec38b1bf1fb3b"
+
 
 
 

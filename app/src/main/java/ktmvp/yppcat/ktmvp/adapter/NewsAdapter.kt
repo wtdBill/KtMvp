@@ -13,15 +13,16 @@ import ktmvp.yppcat.ktmvp.ui.activity.WebViewActivity
 /**
  * Created by ypp0623 on 19-2-20.
  */
-class NewsAdapter(layoutResId:Int,data:MutableList<NewsData.Result.Data>?):BaseQuickAdapter<NewsData.Result.Data,BaseViewHolder>(layoutResId,data) {
+class NewsAdapter(layoutResId: Int, data: MutableList<NewsData.Result.Data>?) : BaseQuickAdapter<NewsData.Result.Data, BaseViewHolder>(layoutResId, data) {
     override fun convert(helper: BaseViewHolder?, item: NewsData.Result.Data?) {
+        item?.title?.let { ktmvp.yppcat.ktmvp.utils.Logger.e(it) }
         helper!!.getView<TextView>(R.id.title).text = item!!.title
         helper.getView<TextView>(R.id.author).text = item.author_name
         Glide.with(mContext).load(item.thumbnail_pic_s).into(helper.getView(R.id.iv1))
         Glide.with(mContext).load(item.thumbnail_pic_s02).into(helper.getView(R.id.iv2))
         Glide.with(mContext).load(item.thumbnail_pic_s03).into(helper.getView(R.id.iv3))
         helper.getView<LinearLayout>(R.id.rootLayout).setOnClickListener {
-            mContext.startActivity(Intent(mContext,WebViewActivity::class.java).putExtra(WebViewActivity.PARAM_URL,item.url))
+            mContext.startActivity(Intent(mContext, WebViewActivity::class.java).putExtra(WebViewActivity.PARAM_URL, item.url))
         }
     }
 }

@@ -1,7 +1,7 @@
 package ktmvp.yppcat.ktmvp.network.service
 
-import com.example.ypp.life.network.entity.NewsEntity
 import io.reactivex.Observable
+import ktmvp.yppcat.ktmvp.network.bean.DimenData
 import ktmvp.yppcat.ktmvp.network.bean.JokeData
 import ktmvp.yppcat.ktmvp.network.bean.NewsData
 import ktmvp.yppcat.ktmvp.utils.Constants
@@ -22,4 +22,8 @@ interface JuheService {
     @FormUrlEncoded
     fun getJoke(@Field("sort") sort: String, @Field("page") page: Int, @Field("pagesize") pagesize: Int,
                 @Field("time") time: String, @Field("key") key: String): Observable<JokeData>
+
+    @POST(Constants.JUHE_DIMEN)
+    @FormUrlEncoded
+    fun getDimenData(@Field("text") text: String, @Field("w") w: Int, @Field("key") key: String = Constants.JUHE_DIMEN_KEY): Observable<DimenData>
 }
