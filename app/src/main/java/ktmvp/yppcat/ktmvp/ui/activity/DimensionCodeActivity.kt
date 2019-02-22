@@ -1,17 +1,16 @@
 package ktmvp.yppcat.ktmvp.ui.activity
 
+import android.Manifest
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Base64
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_dimension_code.*
 import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.base.BaseActivity
 import ktmvp.yppcat.ktmvp.mvp.contract.DimenContract
 import ktmvp.yppcat.ktmvp.mvp.presenter.DimenPresenter
-import ktmvp.yppcat.ktmvp.utils.Logger
+import ktmvp.yppcat.ktmvp.utils.BitmapUtils
+import pub.devrel.easypermissions.EasyPermissions
 
 class DimensionCodeActivity : BaseActivity(), DimenContract.View {
 
@@ -51,7 +50,15 @@ class DimensionCodeActivity : BaseActivity(), DimenContract.View {
 
     override fun initView() {
         mPresenter.attachView(this)
-        confirm.setOnClickListener { mPresenter.getDimenData(mInputText.text.toString()) }
+        openKeyBord(mInputText, mContext)
+        confirm.setOnClickListener {
+            closeKeyBord(mInputText, mContext)
+            mPresenter.getDimenData(mInputText.text.toString())
+        }
+        save.setOnClickListener {
+            val perms = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            EasyPermissions.requestPermissions(this, "KtMvp应用需要以下权限，请允许", 0, *perms)
+        }
 
     }
 
@@ -63,5 +70,10 @@ class DimensionCodeActivity : BaseActivity(), DimenContract.View {
         super.onDestroy()
         mPresenter.detachView()
         bitmap?.recycle()
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        super.onPermissionsGranted(requestCode, perms)
+        bitmap?.let { BitmapUtils.saveBitmapToLocal(it) }
     }
 }

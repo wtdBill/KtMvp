@@ -19,13 +19,6 @@ object Constants {
     const val JUHE_DIMEN = "http://apis.juhe.cn/qrcode/api"
     const val JUHE_DIMEN_KEY = "c77619738cb001f9becec38b1bf1fb3b"
 
-
-
-
-
-
-
-
     const val JOKE_TIME = "joke_time"
     const val DEFAULT_JOKE_TIME = "1418745237"
 
