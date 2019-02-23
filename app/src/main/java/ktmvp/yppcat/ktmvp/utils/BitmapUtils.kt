@@ -26,9 +26,7 @@ object BitmapUtils {
             out.flush()
             out.close()
             //发送广播通知图库更新
-            val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-            val uri = Uri.fromFile(file)
-            intent.data = uri
+            val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,Uri.fromFile(f))
             MyApplication.context.sendBroadcast(intent)
             MyApplication.context.showToast("保存成功")
         } catch (e: FileNotFoundException) {
