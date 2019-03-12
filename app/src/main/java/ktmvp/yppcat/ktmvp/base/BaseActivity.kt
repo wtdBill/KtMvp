@@ -30,6 +30,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionCallbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setOrientation()
+        supportActionBar?.hide()
         setContentView(layoutId())
         initData()
         initView()

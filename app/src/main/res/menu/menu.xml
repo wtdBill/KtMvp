@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/joke"
+            android:title="笑话大全">
+        </item>
+        <item
+            android:id="@+id/news"
+            android:title="新闻">
+        </item>
+        <item
+            android:id="@+id/code"
+            android:title="二维码">
+        </item>
+        <item
+            android:id="@+id/Gongjiao1"
+            android:title="公交查询">
+        </item>
+        <item
+            android:id="@+id/Daolu1"
+            android:title="道路环境">
+        </item>
+        <item
+            android:id="@+id/ETC1"
+            android:title="ETC缴费">
+        </item>
+
+    </group>
+</menu>

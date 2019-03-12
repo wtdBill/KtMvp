@@ -37,7 +37,8 @@
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.DimensionCodeActivity"></activity>
+        <activity android:name=".ui.activity.DimensionCodeActivity" />
+        <activity android:name=".ui.activity.SelectionActivity" />
     </application>
 
 </manifest>
