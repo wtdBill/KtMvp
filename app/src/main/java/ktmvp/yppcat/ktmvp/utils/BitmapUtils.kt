@@ -2,7 +2,11 @@ package ktmvp.yppcat.ktmvp.utils
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.PixelFormat
+import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.view.PixelCopy
 import ktmvp.yppcat.ktmvp.application.MyApplication
 import java.io.File
 import java.io.FileNotFoundException
@@ -34,5 +38,13 @@ object BitmapUtils {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    fun draweableTobitmap(drawable: Drawable): Bitmap {
+        val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+        drawable.draw(canvas)
+        return bitmap
     }
 }

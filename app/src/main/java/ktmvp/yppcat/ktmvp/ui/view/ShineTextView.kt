@@ -27,7 +27,7 @@ class ShineTextView : AppCompatTextView {
         super.onSizeChanged(w, h, oldw, oldh)
         mWidth = w
         mHeight = h
-        mLinearGradient = LinearGradient(0f, 0f, w.toFloat(), 0f, intArrayOf(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN), floatArrayOf(0f,0.3f,0.6f, 1f), Shader.TileMode.CLAMP)
+        mLinearGradient = LinearGradient(0f, 0f, w.toFloat(), 0f, intArrayOf(Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN), floatArrayOf(0f, 0.3f, 0.6f, 1f), Shader.TileMode.CLAMP)
         paint.shader = mLinearGradient
         mGradientMatrix = Matrix()
     }

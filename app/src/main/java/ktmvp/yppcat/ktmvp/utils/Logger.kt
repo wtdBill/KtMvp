@@ -10,7 +10,7 @@ import ktmvp.yppcat.ktmvp.BuildConfig
 object Logger {
     private var isLog = BuildConfig.DEBUG
     private val tag: String = "ktmvp"
-    val max_str_length = 2001 - tag.length
+    private val max_str_length = 2001 - tag.length
     fun setTag(isLog: Boolean) {
         Logger.isLog = isLog
     }

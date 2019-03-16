@@ -5,7 +5,7 @@ package ktmvp.yppcat.ktmvp.utils
  */
 object Constants {
     //internal 限制了跨moudle 的使用
-    const val SP_KOTLIN_STUDY: String = "kotlin_study"
+    internal const val SP_KOTLIN_STUDY: String = "kotlin_study"
     const val USER_ID: String = "user_id"
 
     const val JUHE_NEWS_KEY = "7f07b1c89946ace9e69aca23a1ef7d77"
@@ -21,5 +21,8 @@ object Constants {
 
     const val JOKE_TIME = "joke_time"
     const val DEFAULT_JOKE_TIME = "1418745237"
+
+
+    const val FINISH_LIVE_ACTIVITY = "finish"
 
 }

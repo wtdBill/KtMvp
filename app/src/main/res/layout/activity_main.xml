@@ -29,6 +29,10 @@
                 android:textSize="20dp"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
+        <ktmvp.yppcat.ktmvp.ui.view.FallingView
+            android:id="@+id/mFallView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </RelativeLayout>>
     ​
     <!--左边抽屉菜单-->

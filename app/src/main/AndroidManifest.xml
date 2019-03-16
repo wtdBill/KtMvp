@@ -39,6 +39,20 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.DimensionCodeActivity" />
         <activity android:name=".ui.activity.SelectionActivity" />
+
+        <service
+            android:name=".service.MyIntentService"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.activity.KeepLiveActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:process=":live"
+            android:theme="@style/LiveActivityStyle" />
+
     </application>
 
 </manifest>
