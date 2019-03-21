@@ -10,10 +10,12 @@ import com.tencent.sonic.sdk.SonicSession
 import com.tencent.sonic.sdk.SonicSessionConfig
 import kotlinx.android.synthetic.main.activity_web_view.*
 import ktmvp.yppcat.ktmvp.R
+import ktmvp.yppcat.ktmvp.R.id.webView
 import ktmvp.yppcat.ktmvp.application.HostRuntime
 import ktmvp.yppcat.ktmvp.application.SonicSessionClientImpl
 import ktmvp.yppcat.ktmvp.base.BaseActivity
 
+@Suppress("DEPRECATION")
 class WebViewActivity : BaseActivity() {
 
     private lateinit var url: String
@@ -21,8 +23,8 @@ class WebViewActivity : BaseActivity() {
     private var sonicSessionClient: SonicSessionClientImpl = SonicSessionClientImpl()
 
     companion object {
-        val PARAM_URL = "param_url"
-        val PARAM_MODE = "param_mode"
+        const val PARAM_URL = "param_url"
+        const val PARAM_MODE = "param_mode"
     }
 
 

@@ -93,7 +93,6 @@ class FallObject {
 
     fun drawObject(canvas: Canvas) {
         moveObject()
-        Logger.e(presentY.toString())
         canvas.drawBitmap(bitmap, presentX.toFloat(), presentY.toFloat(), null)
     }
 

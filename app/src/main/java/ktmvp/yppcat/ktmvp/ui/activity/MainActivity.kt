@@ -14,6 +14,7 @@ import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.ui.view.FallObject
 import ktmvp.yppcat.ktmvp.utils.BitmapUtils
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     @SuppressLint("RestrictedApi")
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.joke -> startActivity(Intent(this@MainActivity, JokeActivity::class.java))
                 R.id.news -> startActivity(Intent(this@MainActivity, NewsActivity::class.java))
                 R.id.code -> startActivity(Intent(this@MainActivity, DimensionCodeActivity::class.java))
+                R.id.Gongjiao1 ->startActivity(Intent(this@MainActivity,SelectionActivity::class.java))
             }
             true
         }
