@@ -7,13 +7,16 @@ import android.provider.MediaStore
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.CursorLoader
 import android.support.v4.content.Loader
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_selection.*
 import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.adapter.PicCursorAdapter
 import ktmvp.yppcat.ktmvp.base.BaseActivity
+import ktmvp.yppcat.ktmvp.data.IntentName
 import ktmvp.yppcat.ktmvp.utils.Logger
 import pub.devrel.easypermissions.EasyPermissions
 
+@Route(path = IntentName.APP_ACTIVITY_SELECT)
 @Suppress("DEPRECATION")
 class SelectionActivity : BaseActivity(), LoaderManager.LoaderCallbacks<Cursor> {
 

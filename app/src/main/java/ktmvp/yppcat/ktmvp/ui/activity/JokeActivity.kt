@@ -1,15 +1,18 @@
 package ktmvp.yppcat.ktmvp.ui.activity
 
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_joke.*
 import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.adapter.JokeAdapter
 import ktmvp.yppcat.ktmvp.base.BaseActivity
+import ktmvp.yppcat.ktmvp.data.IntentName
 import ktmvp.yppcat.ktmvp.mvp.contract.JokeContract
 import ktmvp.yppcat.ktmvp.mvp.presenter.JokePresenter
 import ktmvp.yppcat.ktmvp.network.bean.JokeData
 import ktmvp.yppcat.ktmvp.utils.Constants
 
+@Route(path = IntentName.APP_ACTIVITY_JOKE)
 class JokeActivity : BaseActivity(), JokeContract.View {
 
     private val count = 20

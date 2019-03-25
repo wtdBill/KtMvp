@@ -4,14 +4,18 @@ import android.Manifest
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.android.synthetic.main.activity_dimension_code.*
 import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.base.BaseActivity
+import ktmvp.yppcat.ktmvp.data.IntentName
 import ktmvp.yppcat.ktmvp.mvp.contract.DimenContract
 import ktmvp.yppcat.ktmvp.mvp.presenter.DimenPresenter
 import ktmvp.yppcat.ktmvp.utils.BitmapUtils
 import pub.devrel.easypermissions.EasyPermissions
 
+@Route(path = IntentName.APP_ACTIVITY_DIMEN)
 class DimensionCodeActivity : BaseActivity(), DimenContract.View {
 
     private val mPresenter by lazy { DimenPresenter() }
@@ -45,6 +49,7 @@ class DimensionCodeActivity : BaseActivity(), DimenContract.View {
     }
 
     override fun initData() {
+        ARouter.getInstance().inject(this)
         mContext = this
     }
 

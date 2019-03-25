@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.classic.common.MultipleStatusView
 import ktmvp.yppcat.ktmvp.application.MyApplication
 import pub.devrel.easypermissions.AppSettingsDialog
@@ -29,6 +30,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionCallbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
         setOrientation()
         supportActionBar?.hide()
         setContentView(layoutId())

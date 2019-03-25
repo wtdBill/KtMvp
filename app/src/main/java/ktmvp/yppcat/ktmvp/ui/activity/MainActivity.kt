@@ -1,16 +1,14 @@
 package ktmvp.yppcat.ktmvp.ui.activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
-import android.view.MenuItem
+import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.android.synthetic.main.activity_main.*
 import ktmvp.yppcat.ktmvp.R
+import ktmvp.yppcat.ktmvp.data.IntentName
 import ktmvp.yppcat.ktmvp.ui.view.FallObject
 import ktmvp.yppcat.ktmvp.utils.BitmapUtils
 
@@ -26,17 +24,17 @@ class MainActivity : AppCompatActivity() {
 
         mNaView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.joke -> startActivity(Intent(this@MainActivity, JokeActivity::class.java))
-                R.id.news -> startActivity(Intent(this@MainActivity, NewsActivity::class.java))
-                R.id.code -> startActivity(Intent(this@MainActivity, DimensionCodeActivity::class.java))
-                R.id.Gongjiao1 ->startActivity(Intent(this@MainActivity,SelectionActivity::class.java))
+                R.id.joke -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_JOKE).navigation()
+                R.id.news -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_NEWS).navigation()
+                R.id.code -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_DIMEN).navigation()
+                R.id.Gongjiao1 -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_SELECT).navigation()
             }
             true
         }
         val bitmap = BitmapUtils.draweableTobitmap(resources.getDrawable(R.drawable.sort))
         val fallObject = FallObject.Builder(bitmap)
                 .setSize(true)
-                .setSpeed( true)
+                .setSpeed(true)
                 .build()
         mFallView.addFallObject(fallObject, 50)
 

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.view.View
 import android.webkit.*
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.tencent.sonic.sdk.SonicConfig
 import com.tencent.sonic.sdk.SonicEngine
 import com.tencent.sonic.sdk.SonicSession
@@ -14,11 +16,13 @@ import ktmvp.yppcat.ktmvp.R.id.webView
 import ktmvp.yppcat.ktmvp.application.HostRuntime
 import ktmvp.yppcat.ktmvp.application.SonicSessionClientImpl
 import ktmvp.yppcat.ktmvp.base.BaseActivity
+import ktmvp.yppcat.ktmvp.data.IntentName
 
+@Route(path = IntentName.APP_ACTIVITY_WEBVIEW)
 @Suppress("DEPRECATION")
 class WebViewActivity : BaseActivity() {
-
-    private lateinit var url: String
+    @Autowired(name = PARAM_URL)
+    lateinit var url: String
     private var sonicSession: SonicSession? = null
     private var sonicSessionClient: SonicSessionClientImpl = SonicSessionClientImpl()
 
@@ -33,7 +37,6 @@ class WebViewActivity : BaseActivity() {
     }
 
     override fun initData() {
-        url = intent.getStringExtra(PARAM_URL)
 
         if (!SonicEngine.isGetInstanceAllowed()) {
             SonicEngine.createInstance(HostRuntime(application), SonicConfig.Builder().build())

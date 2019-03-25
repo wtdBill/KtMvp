@@ -5,9 +5,11 @@ import android.graphics.Color
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_news.*
 import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.base.BaseActivity
+import ktmvp.yppcat.ktmvp.data.IntentName
 import ktmvp.yppcat.ktmvp.ui.fragment.NewsFragment
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -17,6 +19,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView
 
+@Route(path = IntentName.APP_ACTIVITY_NEWS)
 class NewsActivity : BaseActivity() {
 
     private lateinit var adapter: MyAdapter

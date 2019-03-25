@@ -3,6 +3,7 @@ package ktmvp.yppcat.ktmvp.application
 import android.app.Application
 import android.content.Context
 import android.view.WindowManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.squareup.leakcanary.RefWatcher
 
 import kotlin.properties.Delegates
@@ -14,6 +15,7 @@ import kotlin.properties.Delegates
 
 class MyApplication : Application() {
     private var refWatcher: RefWatcher? = null
+    private val isDebugArouter = true
 
     companion object {
 
@@ -40,6 +42,15 @@ class MyApplication : Application() {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         screenWidth = windowManager.defaultDisplay.width
         screenHeight = windowManager.defaultDisplay.height
+        if (isDebugArouter){
+            ARouter.openLog()
+            ARouter.openDebug()
+        }
+        ARouter.init(this@MyApplication)
+    }
 
+    override fun onTerminate() {
+        super.onTerminate()
+        ARouter.getInstance().destroy()
     }
 }
