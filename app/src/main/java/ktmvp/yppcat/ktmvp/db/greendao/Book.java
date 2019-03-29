@@ -1,4 +1,4 @@
-package ktmvp.yppcat.ktmvp.db;
+package ktmvp.yppcat.ktmvp.db.greendao;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;

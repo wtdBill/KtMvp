@@ -1,5 +1,6 @@
 package ktmvp.yppcat.ktmvp.network
 
+import ktmvp.yppcat.ktmvp.BuildConfig
 import ktmvp.yppcat.ktmvp.utils.AppUtils
 import ktmvp.yppcat.ktmvp.utils.NetworkUtil
 import ktmvp.yppcat.ktmvp.application.MyApplication
@@ -81,7 +82,7 @@ object RetrofitManager {
 
     private fun getOkHttpClient(): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        httpLoggingInterceptor.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         val cacheFile = File(MyApplication.context.cacheDir, "cache")
         val cache = Cache(cacheFile, 1024 * 1024 * 50)
         return OkHttpClient().newBuilder()
