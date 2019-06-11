@@ -15,7 +15,7 @@ class DimenPresenter : BasePrenster<DimenContract.View>(), DimenContract.Present
     override fun getDimenData(text: String) {
 
         val disposable = dimenModel.getDimenData(text)
-                .subscribe({ it ->
+                .subscribe({
                     mRootView.apply {
                         it.result?.base64_image?.let { it1 -> this?.setDinemData(it1) }
                     }

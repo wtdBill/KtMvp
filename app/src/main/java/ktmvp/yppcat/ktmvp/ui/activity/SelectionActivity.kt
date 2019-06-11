@@ -7,13 +7,17 @@ import android.provider.MediaStore
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.CursorLoader
 import android.support.v4.content.Loader
+import android.view.View
+import android.widget.AdapterView
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_selection.*
 import ktmvp.yppcat.ktmvp.R
 import ktmvp.yppcat.ktmvp.adapter.PicCursorAdapter
 import ktmvp.yppcat.ktmvp.base.BaseActivity
 import ktmvp.yppcat.ktmvp.data.IntentName
+import ktmvp.yppcat.ktmvp.utils.Constants
 import ktmvp.yppcat.ktmvp.utils.Logger
+import ktmvp.yppcat.ktmvp.utils.Preference
 import pub.devrel.easypermissions.EasyPermissions
 
 @Route(path = IntentName.APP_ACTIVITY_SELECT)
@@ -55,7 +59,6 @@ class SelectionActivity : BaseActivity(), LoaderManager.LoaderCallbacks<Cursor> 
         pic_list.adapter = adapter
         val parms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
         EasyPermissions.requestPermissions(this, "ss", 0, *parms)
-
     }
 
     override fun start() {

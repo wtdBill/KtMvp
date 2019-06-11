@@ -40,7 +40,6 @@
         android:id="@+id/mNaView"
         android:layout_width="150dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp_40"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_layout"

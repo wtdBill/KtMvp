@@ -25,4 +25,8 @@ object Constants {
 
     const val FINISH_LIVE_ACTIVITY = "finish"
 
+    object User{
+        internal const val USER_HEAD = "user_head"
+    }
+
 }

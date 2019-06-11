@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KtMvp.iml" filepath="$PROJECT_DIR$/KtMvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/KtMvp.iml" filepath="$PROJECT_DIR$/.idea/KtMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ktmvp.yppcat.ktmvp.test/ktmvp.yppcat.ktmvp.test.iml" filepath="$PROJECT_DIR$/ktmvp.yppcat.ktmvp.test/ktmvp.yppcat.ktmvp.test.iml" />
     </modules>
