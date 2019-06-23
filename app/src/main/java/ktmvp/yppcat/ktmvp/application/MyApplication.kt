@@ -4,7 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.view.WindowManager
 import com.alibaba.android.arouter.launcher.ARouter
+import com.joanzapata.iconify.Iconify
+import com.joanzapata.iconify.fonts.FontAwesomeModule
 import com.squareup.leakcanary.RefWatcher
+import ktmvp.yppcat.ktmvp.font.FontEcModule
 
 import kotlin.properties.Delegates
 
@@ -47,6 +50,8 @@ class MyApplication : Application() {
             ARouter.openDebug()
         }
         ARouter.init(this@MyApplication)
+        Iconify.with(FontAwesomeModule())
+                .with(FontEcModule())
     }
 
     override fun onTerminate() {

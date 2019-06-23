@@ -25,6 +25,7 @@
         android:layout_alignParentEnd="true"
         android:textSize="13sp"/>
 
+
     <ImageView
         android:id="@+id/mDimenPic"
         android:layout_width="200dp"

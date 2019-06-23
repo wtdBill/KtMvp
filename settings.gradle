@@ -1,1 +1,1 @@
-include ':app', ':ktmvp.yppcat.ktmvp.test'
+include ':app'

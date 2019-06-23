@@ -88,4 +88,8 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.1.4'
     kapt 'com.alibaba:arouter-annotation:1.0.4'
     implementation files('libs/BmobSDK_3.7.0_20190314.jar')
+
+    compile 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2' // (v2.0.1)
+    compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2' // (v4.5)
+
 }
