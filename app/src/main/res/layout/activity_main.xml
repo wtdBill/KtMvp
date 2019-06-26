@@ -33,6 +33,11 @@
             android:id="@+id/mFallView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <ktmvp.yppcat.ktmvp.ui.view.WeatherView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"/>
     </RelativeLayout>>
     ​
     <!--左边抽屉菜单-->

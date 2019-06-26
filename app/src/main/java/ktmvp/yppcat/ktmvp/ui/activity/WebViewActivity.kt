@@ -12,7 +12,6 @@ import com.tencent.sonic.sdk.SonicSession
 import com.tencent.sonic.sdk.SonicSessionConfig
 import kotlinx.android.synthetic.main.activity_web_view.*
 import ktmvp.yppcat.ktmvp.R
-import ktmvp.yppcat.ktmvp.R.id.webView
 import ktmvp.yppcat.ktmvp.application.HostRuntime
 import ktmvp.yppcat.ktmvp.application.SonicSessionClientImpl
 import ktmvp.yppcat.ktmvp.base.BaseActivity

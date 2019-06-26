@@ -19,17 +19,16 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitManager {
 
-    private var token: String = ""
     private val juheUrl = "http://v.juhe.cn/"
 
 
     private fun addQueryParamterInterceptor(): Interceptor {
         return Interceptor { chain ->
-            val originRequesr = chain.request()
+            val originRequest = chain.request()
             val request: Request
-            val modifiledUrl = originRequesr.url().newBuilder()
+            val modifiedUrl = originRequest.url().newBuilder()
                     .build()
-            request = originRequesr.newBuilder().url(modifiledUrl).build()
+            request = originRequest.newBuilder().url(modifiedUrl).build()
             chain.proceed(request)
         }
     }
@@ -56,13 +55,13 @@ object RetrofitManager {
             if (NetworkUtil.isNetworkAvailable(MyApplication.context)) {
                 val maxAge = 0
                 response.newBuilder()
-                        .header("Cache-Control", "public,max-age=" + maxAge)
+                        .header("Cache-Control", "public,max-age=$maxAge")
                         .removeHeader("Retrofit")
                         .build()
             } else {
                 val maxStale = 60 * 60 * 24 * 28
                 response.newBuilder()
-                        .header("Cache-Control", "public,only-if-cached, max-stale=" + maxStale)
+                        .header("Cache-Control", "public,only-if-cached, max-stale=$maxStale")
                         .removeHeader("nyn")
                         .build()
             }

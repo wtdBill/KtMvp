@@ -59,10 +59,10 @@ class FallingView : View {
 
     private fun measureSize(defaultSize: Int, measureSpec: Int): Int {
         var result = defaultSize
-        val specMode = View.MeasureSpec.getMode(measureSpec)
-        val specSize = View.MeasureSpec.getSize(measureSpec)
+        val specMode = MeasureSpec.getMode(measureSpec)
+        val specSize = MeasureSpec.getSize(measureSpec)
 
-        result = if (specMode == View.MeasureSpec.EXACTLY) {
+        result = if (specMode == MeasureSpec.EXACTLY) {
             specSize
         } else {
             Math.max(result, specSize)

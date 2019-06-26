@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Matrix
 import ktmvp.yppcat.ktmvp.utils.Logger
+import java.lang.Math.sin
 
 
 /**
@@ -21,6 +22,11 @@ class FallObject {
     private var isRandomSpeed = false
     private var isRandomSize = false
 
+    var initWindLevel = 0
+    private var angle: Float = 0f
+    private var isWindRandom = false
+    private var isWindChange = false
+
     var initSpeed = 1
 
     var presentX = 0
@@ -32,10 +38,15 @@ class FallObject {
 
     companion object {
         const val defaultSpeed = 10
+        const val defaultWindLeel = 0
+        const val defaultWindSpeed = 10
+        const val HALF_PI = Math.PI / 2
     }
 
     constructor(builder: Builder) {
         this.builder = builder
+        isWindChange = builder.isWindChange
+        isWindRandom = builder.isWindRandom
         initSpeed = builder.initSpeed
         bitmap = builder.bitmap
         isRandomSize = builder.isRandomSize
@@ -43,6 +54,8 @@ class FallObject {
     }
 
     constructor(builder: Builder, parentWidth: Int, parentHeight: Int) {
+        isWindChange = builder.isWindChange
+        isWindRandom = builder.isWindRandom
         random = Random()
         bitmap = builder.bitmap
         this.builder = builder
@@ -66,6 +79,9 @@ class FallObject {
         var initSpeed: Int = 0
         var isRandomSpeed = false
         var isRandomSize = false
+        var isWindRandom = false
+        var isWindChange = false
+        var initWindLevel = 0
 
         init {
             this.initSpeed = defaultSpeed
@@ -86,6 +102,13 @@ class FallObject {
             return this
         }
 
+        fun setWind(initWindLevel: Int, isWindChange: Boolean, isWindRandom: Boolean): Builder {
+            this.initWindLevel = initWindLevel
+            this.isWindChange = isWindChange
+            this.isWindRandom = isWindRandom
+            return this
+        }
+
         fun build(): FallObject {
             return FallObject(this)
         }
@@ -97,9 +120,17 @@ class FallObject {
     }
 
     private fun moveObject() {
+        moveX()
         moveY()
-        if (presentY > parentHeight) {
+        if (presentY > parentHeight || presentX < -bitmap!!.width || presentX > parentWidth + bitmap!!.width) {
             reset()
+        }
+    }
+
+    private fun moveX() {
+        presentX += defaultWindSpeed * sin(angle.toDouble()).toInt()
+        if (isWindChange) {
+            angle += if (random?.nextBoolean()!!) ((-1) * Math.random() * 0.0025).toFloat() else (Math.random() * 0.0025).toFloat()
         }
     }
 
@@ -109,7 +140,22 @@ class FallObject {
 
     private fun reset() {
         presentY = -objectHeight
-        presentSpeed = initSpeed
+//        presentSpeed = initSpeed
+        randomSpeed()
+        randomWind()
+    }
+
+    private fun randomWind() {
+        if (isWindRandom) {
+            angle = if (random?.nextBoolean()!!) {
+                ((-1) * Math.random() * initWindLevel / 50).toFloat()
+            } else (Math.random() * initWindLevel / 50).toFloat()
+        }
+        if (angle > HALF_PI) {
+            angle = HALF_PI.toFloat()
+        } else if (angle < -HALF_PI) {
+            angle = (-HALF_PI).toFloat()
+        }
     }
 
     private fun randomSize() {

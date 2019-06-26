@@ -1,45 +1,54 @@
 package ktmvp.yppcat.ktmvp.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-import android.support.design.widget.NavigationView
+import android.os.Build
+import android.provider.MediaStore
+import android.support.annotation.RequiresApi
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.NotificationManagerCompat
 import android.support.v4.view.GravityCompat
-import android.text.TextUtils
-import android.view.View
 import android.widget.ImageView
-import cn.bmob.v3.util.V
 import com.alibaba.android.arouter.launcher.ARouter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.header_layout.*
 import ktmvp.yppcat.ktmvp.Bus.BaseMessage
 import ktmvp.yppcat.ktmvp.Bus.KTBus
 import ktmvp.yppcat.ktmvp.Bus.KTObserver
 import ktmvp.yppcat.ktmvp.Bus.MessageType
 import ktmvp.yppcat.ktmvp.R
+import ktmvp.yppcat.ktmvp.base.BaseActivity
 import ktmvp.yppcat.ktmvp.data.IntentName
+import ktmvp.yppcat.ktmvp.mvp.contract.MainContract
+import ktmvp.yppcat.ktmvp.mvp.presenter.MainPresenter
 import ktmvp.yppcat.ktmvp.ui.view.FallObject
 import ktmvp.yppcat.ktmvp.utils.BitmapUtils
-import ktmvp.yppcat.ktmvp.utils.Constants
-import ktmvp.yppcat.ktmvp.utils.Logger
-import ktmvp.yppcat.ktmvp.utils.Preference
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity(), KTObserver {
+class MainActivity : BaseActivity(), KTObserver, MainContract.View {
 
     private lateinit var headerView: ImageView
 
-    @SuppressLint("RestrictedApi")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        KTBus.instance.register(this)
+    private val mPresenter by lazy { MainPresenter() }
 
+    init {
+        mPresenter.attachView(this)
+    }
+
+    override fun layoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun initData() {
+        KTBus.instance.register(this)
+    }
+
+    override fun initView() {
         mDrawerLayout.setScrimColor(Color.TRANSPARENT)
 
         mNaView.setNavigationItemSelectedListener {
@@ -47,36 +56,73 @@ class MainActivity : AppCompatActivity(), KTObserver {
                 R.id.joke -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_JOKE).navigation()
                 R.id.news -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_NEWS).navigation()
                 R.id.code -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_DIMEN).navigation()
-                R.id.Gongjiao1 -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_SELECT).navigation()
+                R.id.Gongjiao1 -> ARouter.getInstance().build(IntentName.APP_ACTIVITY_BLUETOOTH).navigation()
             }
             true
         }
-        val bitmap = BitmapUtils.draweableTobitmap(resources.getDrawable(R.drawable.sort))
+        val bitmap = BitmapUtils.draweableTobitmap(resources.getDrawable(R.drawable.ic_xuehua))
         val fallObject = FallObject.Builder(bitmap)
                 .setSize(true)
                 .setSpeed(true)
+                .setWind(5, true, true)
                 .build()
         mFallView.addFallObject(fallObject, 50)
 
-        iv_header.setOnClickListener { mDrawerLayout.openDrawer(GravityCompat.START) }
+        iv_header.setOnClickListener {
+            mDrawerLayout.openDrawer(GravityCompat.START)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                showNotification()
+            }
+        }
 
-        headerView = mNaView.getHeaderView(0).findViewById<ImageView>(R.id.icon_image)
-
-        loadHead()
+        headerView = mNaView.getHeaderView(0).findViewById(R.id.icon_image)
+        headerView.setOnClickListener {
+            ARouter.getInstance().build(IntentName.APP_ACTIVITY_SELECT).navigation()
+        }
 
     }
 
-    private fun loadHead() {
-        val mHeaderImg by Preference(Constants.User.USER_HEAD, "")
-        if (!TextUtils.isEmpty(mHeaderImg)) {
-            val option = RequestOptions
-                    .diskCacheStrategyOf(DiskCacheStrategy.RESOURCE)
-                    .centerCrop()
-            Glide.with(this)
-                    .load(mHeaderImg)
-                    .apply(option)
-                    .into(headerView)
-        }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun showNotification() {
+        val manager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val builder = Notification.Builder(this.applicationContext)
+                .setSound(MediaStore.Audio.Media.INTERNAL_CONTENT_URI)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setTicker("有消息")
+                .setContentTitle("title")
+                .setContentText("content")
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setChannelId(this.packageName)
+                .setOngoing(false)
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(false)
+
+        val channel = NotificationChannel(this.packageName,"message",NotificationManager.IMPORTANCE_DEFAULT)
+        manager.createNotificationChannel(channel)
+
+        val intent = Intent(this, SelectionActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        val resultIntent = PendingIntent.getActivity(this, 5, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        builder.setContentIntent(resultIntent)
+        manager.notify(1, builder.build())
+    }
+
+    override fun start() {
+        mPresenter.loadHead(this, headerView)
+    }
+
+
+    override fun showLoading() {
+
+    }
+
+    override fun dismissLoading() {
+
+    }
+
+    override fun showDefault() {
+
     }
 
 
@@ -91,7 +137,7 @@ class MainActivity : AppCompatActivity(), KTObserver {
     override fun handleMessage(message: BaseMessage) {
         when (message.getMessageType()) {
             MessageType.EXIT_APP -> System.exit(0)
-            MessageType.CHANGE_HEAD -> loadHead()
+            MessageType.CHANGE_HEAD -> mPresenter.loadHead(this, headerView)
         }
     }
 

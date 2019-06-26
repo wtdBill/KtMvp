@@ -9,4 +9,5 @@ object IntentName {
     const val APP_ACTIVITY_DIMEN = "/app/dimen"
     const val APP_ACTIVITY_SELECT = "/app/select"
     const val APP_ACTIVITY_WEBVIEW = "/app/web"
+    const val APP_ACTIVITY_BLUETOOTH = "/app/bluetooth"
 }

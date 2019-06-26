@@ -3,6 +3,7 @@ package ktmvp.yppcat.ktmvp.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Paint
 import android.hardware.input.InputManager
 import android.support.annotation.*
 import android.support.v4.app.Fragment
@@ -67,7 +68,7 @@ fun Context.dataFormat(total: Long): String {
     val result: String
     val speedReal: Int = (total / (1024)).toInt()
     result = if (speedReal < 512) {
-        speedReal.toString() + " KB"
+        "$speedReal KB"
     } else {
         val mSpeed = speedReal / 1024.0
         (Math.round(mSpeed * 100) / 100).toString() + " MB"
@@ -155,4 +156,8 @@ fun Context.getBoolean(@BoolRes id: Int) = resources.getBoolean(id)
 fun Context.getColor(@ColorRes id: Int) = ContextCompat.getColor(this, id)
 
 fun Context.getDrawable(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)
+
+fun Canvas.drawCircle(x: Int, y: Int, r: Int, paint: Paint) {
+    this.drawCircle(x.toFloat(), y.toFloat(), r.toFloat(),paint)
+}
 
