@@ -1,6 +1,5 @@
 package ktmvp.yppcat.ktmvp.ui.activity
 
-import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -11,8 +10,6 @@ import android.graphics.Color
 import android.os.Build
 import android.provider.MediaStore
 import android.support.annotation.RequiresApi
-import android.support.v4.app.NotificationCompat
-import android.support.v4.app.NotificationManagerCompat
 import android.support.v4.view.GravityCompat
 import android.widget.ImageView
 import com.alibaba.android.arouter.launcher.ARouter
